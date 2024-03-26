@@ -1,0 +1,61 @@
+.password__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(170, 170, 170);
+    min-height: 100vh;
+}
+.password__content{
+    background:white;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 35%;
+}
+.password__header{
+    text-align: center;
+    line-height: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(231, 150, 0);
+   margin-top: 3rem;
+}
+.password__form{
+    background: inherit;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 3.5rem;
+    margin-top: 1rem;
+}
+
+
+.password__btn{
+    background:rgb(255, 166, 0);
+    padding: 0.8rem;
+    border: none;
+    color: white;
+    margin-top: 3rem;
+    font-size: 1rem;
+}
+.password__label{
+    font-size: 0.9rem;
+    line-height: 20px;
+    font-family: 'poppins',sans-serif;
+    font-weight: bold;
+    padding: 0.2rem;
+    margin-left: 0.1rem;
+    margin-top: 0.8rem;
+    color: gray;
+}
+.password__input{
+    padding: 0.6rem;
+    margin-left: 0.2rem;
+    margin-top: 0.3rem;
+    border-radius: 15px;
+    border:0.2px solid rgb(237, 236, 255);
+    background-color: rgb(255, 255, 255);
+}
+.password__input:disabled{
+    background: rgb(243, 243, 243);
+}
