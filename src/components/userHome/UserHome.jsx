@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate} from 'react-router-dom'
 import axios from 'axios';
+import { InfinitySpin} from 'react-loader-spinner'
 import './user.css'
 const UserHome = () => {
     const [loading, setLoading]=useState(false);
     const tin=sessionStorage.getItem("tin");
     const token=sessionStorage.getItem("token");
-    const [type, setType]=useState('')
-    const [status, setStatus]=useState('');
-    const [date, setDate]=useState('');
+    const [application, setApplication] = useState({
+        type: '',
+        status: '',
+        date: ''
+    });
     const navigate=useNavigate();
     useEffect(()=>{
         const fetchRequest=async()=>{
@@ -22,9 +25,11 @@ const UserHome = () => {
                 })
                 if(response.status===200){
                     const data=response.data;
-                    setType(data.ebmType);
-                    setStatus(data.status);
-                    setDate(data.requestDate);
+                    setApplication({
+                        type: data.ebmType,
+                        status: data.status,
+                        date: data.requestDate
+                    });
                     setLoading(false);
                 }
                 
@@ -49,17 +54,29 @@ const UserHome = () => {
              Logout
             </button>
         </div>
-        {loading?(<h2>Loading</h2>):(
+        {loading?(<>
+        <div className='loading'>
+            <InfinitySpin color='white'/>
+            <h2 className='loading__header'>Loading</h2>
+        </div>
+        </>
+        ):(
         <div className='home__content'>
             <h3 className='content__h3'>
-                My Applications
+                My Application
             </h3>
+            {
+                application.type || application.status || application.date?(
             <div className='home__app'>
-                <h2 className='app__header'>EBM Type: {type}</h2>
-                <h3 className='app__header'>Status: {status}</h3>
-                <h5 className='app__header'>Date: {date}</h5>
+                <h2 className='app__header'>EBM Type: {application.type}</h2>
+                <h3 className='app__header'>Status: {application.status}</h3>
+                <h5 className='app__header'>Date: {application.date}</h5>
                 <Link to='#' className='app__link'>Open Application</Link>
             </div>
+                ):(
+                    <h2 className='not__found'>No Application Found</h2>
+                )
+}
          
             
         </div>

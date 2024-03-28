@@ -31,8 +31,8 @@ const SignUp = () => {
     try {
       const response=await axios.get(`http://localhost:8080/taxPayer/findPayer/${tinNumber}`);
 
-     if(response.ok){
-        const data= await response.json();
+     if(response.status===200){
+      const data= await response.data;
         setTaxPayer({
           firstName:data.firstName,
           lastName:data.lastName,
@@ -68,15 +68,18 @@ const SignUp = () => {
     const tin=tinNumber;
     setLoading(true);
     e.preventDefault();
-    try{
-      const response=await fetch("http://localhost:8080/users/register",{
-        method:'POST',
-        headers:{
-          'Content-Type': 'application/json',
-        },
-        body:JSON.stringify({tin,email,roles},)
+    try {
+      const response = await axios.post("http://localhost:8080/users/register", {
+          tin,
+          email,
+          roles
+      }, {
+          headers: {
+              'Content-Type': 'application/json'
+          }
       });
-      if(response.ok){
+      // Handle response
+      if(response.status===200){
         setSuccess('Account Created Successfully');
       
         setTaxPayer({
@@ -88,13 +91,21 @@ const SignUp = () => {
         navigate('/');
 
       }
-      else{
-        setError(response.statusText);
-      }
 
     }
     catch(error){
-      setError(error);
+      if (error.response && error.response.status === 409) {
+        setError("User already exists");
+        setLoading(false);
+        setTaxPayer({
+          firstName:"",
+          lastName:"",
+          email:"",
+          phoneNumber:""
+        })
+    } else {
+        setError(error.message);
+    }
 
     }
   }

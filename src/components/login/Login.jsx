@@ -7,7 +7,6 @@ const Login = () => {
   const[tin,setTin]=useState();
   const [password, setPassword]=useState('');
   const [token,setToken]=useState('');
-  // const [isLoggedIn,setIsLoggedIn]=useState(false);
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState('');
   const navigate=useNavigate();

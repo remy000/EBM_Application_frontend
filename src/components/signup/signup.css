@@ -13,7 +13,7 @@
 }
 .signup__content{
     display: flex;
-    margin-top: 25px;
+    margin-top: 15px;
     flex-direction: column;
     width: 50%;
     height: 95%;
@@ -27,7 +27,7 @@
     color: rgb(0, 1, 61);
     font-size: 2rem;
     font-weight: bold;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 .signup__form{
     display: flex;
@@ -46,12 +46,12 @@
     font-weight: bold;
     padding: 0.2rem;
     margin-left: 0.1rem;
-    margin-top: 0.8rem;
+    margin-top: 0.5rem;
 }
 .signup__input{
     padding: 0.6rem;
     margin-left: 0.2rem;
-    margin-top: 0.3rem;
+    margin-top: 0.2rem;
     border-radius: 15px;
     border:0.2px solid rgb(233, 233, 233);
     background-color: rgb(255, 255, 255);
