@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './login.css'
 import { Link,useNavigate } from 'react-router-dom'
 import {jwtDecode} from 'jwt-decode'
+import axios from 'axios';
 
 const Login = () => {
   const[tin,setTin]=useState();
@@ -19,28 +20,28 @@ const Login = () => {
       return;
   }
   try {
-    const response=await fetch('http://localhost:8080/users/authentication',{
-      method:'POST',
+    const response=await axios.post('http://localhost:8080/users/authentication',{
+      tin,
+      password
+    },{
       headers:{
         'Content-Type':'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({tin,password})
 
     });
    
-    if(response.ok){
-      const data=await response.json();
+    if(response.status===200){
+      const data=await response.data;
       setToken(data.token);
     }
     else{
-      console.log(response.statusText);
+      console.log(response.status);
       setError("Invalid Credentials");
       setLoading(false)
     }
     
   } catch (error) {
-    console.error('Login failed:', error);
     setError('Something went wrong');
     setLoading(false);
   }

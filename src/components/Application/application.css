@@ -1,6 +1,28 @@
 .home__container{
     display: flex;
     flex-direction: column;
-    background-color:rgb(0, 1, 61);
-    height: 120vh;
+    background-color:#093e61;
+    height: 140vh;
+    position: relative;
+}
+.home__btns{
+    position:absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 70px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding: 10px 20px;
+    background-color: white;
+    color: #093e61;
+    border: none;
+    border-radius: 40px;
+}
+.home__link{
+    color: #093e61;
+    text-decoration: none;
+}
+.home__link:visited{
+    color: #093e61;
 }

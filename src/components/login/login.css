@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(0, 1, 61);
+    background: #093e61;
     min-height: 100vh;
 }
 .login__content{
@@ -17,7 +17,7 @@
     line-height: 20px;
     font-size: 2rem;
     font-weight: bold;
-    color:rgb(0, 1, 61);
+    color:#093e61;
    margin-top: 3rem;
 }
 .login__form{
@@ -31,17 +31,17 @@
 .forgot__link{
     font-size: 1rem;
     line-height: 25px;
-    color:rgb(0, 1, 61) ;
+    color:#093e61;
     margin-top: 1.2rem;
     text-decoration: none;
     margin-bottom: 1rem;
     font-weight:500
 }
 .forgot__link:visited{
-    color:rgb(0, 1, 61) ;
+    color:#093e61 ;
 }
 .login__btn{
-    background: rgb(0, 1, 61);
+    background: #093e61;
     padding: 0.8rem;
     border: none;
     color: white;
@@ -54,8 +54,8 @@
     margin-top: 1rem;
     font-size: 1rem;
     text-decoration: none;
-    color: rgb(0, 1, 61);
+    color: #093e61;
 }
 .forgot__link:visited{
-    color: rgb(0, 1, 61);
+    color: #093e61;
 }

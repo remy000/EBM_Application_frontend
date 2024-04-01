@@ -24,7 +24,7 @@
 }
 .signup__header{
     text-align: center;
-    color: rgb(0, 1, 61);
+    color: #093e61;
     font-size: 2rem;
     font-weight: bold;
     margin-top: 2rem;
@@ -65,7 +65,7 @@
     font-size: 1.2rem;
 }
 .signup__link{
-    color: rgb(0, 1, 61);
+    color: #093e61;
     text-emphasis: none;
     text-align: center;
     margin-top: 1rem;
@@ -73,7 +73,7 @@
     text-decoration: none;
 }
 .signup__link:visited{
-    color: rgb(0, 1, 61);
+    color: #093e61;
 }
 .signup__input:disabled{
     background-color: rgb(190, 190, 190);

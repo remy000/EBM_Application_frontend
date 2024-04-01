@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(0,0,61);
+    background: #093e61;
     min-height: 100vh;
 }
 .password__content{
@@ -17,7 +17,7 @@
     line-height: 20px;
     font-size: 2rem;
     font-weight: bold;
-    color: rgb(0,0,61);
+    color: #093e61;
    margin-top: 3rem;
 }
 .password__form{
@@ -31,7 +31,7 @@
 
 
 .password__btn{
-    background:rgb(0,0,61);
+    background:#093e61;
     padding: 0.8rem;
     border: none;
     color: white;

@@ -35,7 +35,7 @@ const UserHome = () => {
                 
             } catch (error) {
                 setLoading(false);
-                console.log(error);
+                
                 
             }
         }
@@ -71,7 +71,7 @@ const UserHome = () => {
                 <h2 className='app__header'>EBM Type: {application.type}</h2>
                 <h3 className='app__header'>Status: {application.status}</h3>
                 <h5 className='app__header'>Date: {application.date}</h5>
-                <Link to='#' className='app__link'>Open Application</Link>
+                <Link to={`/applicationDetail/${tin}`} className='app__link'>Open Application</Link>
             </div>
                 ):(
                     <h2 className='not__found'>No Application Found</h2>
@@ -81,6 +81,7 @@ const UserHome = () => {
             
         </div>
         )}
+       
         <div className='home__footer'>
                 <button className='footer__btn'><Link className='footer__link' to="/application">Start New Application</Link></button>  
             </div>

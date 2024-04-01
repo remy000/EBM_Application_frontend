@@ -26,8 +26,10 @@ const TermsCondition = ({prevStep, onChange,onSubmit,formData,isLoading }) => {
     
       return (
         <div className='container'>
+         
           <h2 className='headers'>Terms & Conditions</h2>
           <p className='parag'>Please read and accept the terms and conditions to proceed.</p>
+          
           
           <div className='content'>
           <div className='check__box'>
