@@ -1,0 +1,12 @@
+.admin__container{
+    display: flex;
+    flex-direction: column;
+    background-color: #093e61; 
+    height: 100vh;
+}
+.admin__home{
+    width: 80%;
+    margin-left: 3rem;
+    height: 80%;
+    background-color: white;
+}

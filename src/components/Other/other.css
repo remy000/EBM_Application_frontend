@@ -1,0 +1,36 @@
+.other__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #093e61;
+    height: 100vh;
+}
+.other__container h1{
+    font-size: 4rem;
+    color: white;
+    font-weight: bold;
+    line-height: 50px;
+}
+.other__container h2{
+    color: white;
+    line-height: 30px;
+    font-size: 2rem;
+}
+.btn__btn{
+    margin-top: 1rem;
+    border: none;
+    background: white;
+    padding: 10px 30px;
+    border-radius: 40px;
+    color: #093e61;
+    font-weight: 600;
+}
+.other__link{
+    color: #093e61;
+    text-decoration: none;
+    font-weight: 600;
+}
+.other__link:visited{
+    color: #093e61;
+}

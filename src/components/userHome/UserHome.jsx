@@ -41,9 +41,12 @@ const UserHome = () => {
         }
         fetchRequest();
     },[tin, token]);
+
     const handleLogout=()=>{
         sessionStorage.removeItem("tin");
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("auths");
+        sessionStorage.removeItem("roles");
         navigate("/")
     }
   return (

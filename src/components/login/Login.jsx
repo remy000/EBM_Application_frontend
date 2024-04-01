@@ -50,20 +50,35 @@ const Login = () => {
     if(token){
       const decodedToken=jwtDecode(token);
       const isDefault=decodedToken.isDefault;
-
+      const role=decodedToken.roles;
+      if(role.includes && role.includes('taxpayer')){
       if(isDefault&&isDefault===true){
         sessionStorage.setItem('tin',tin);
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem("auths", true);
+        sessionStorage.setItem("roles",role);
         navigate("/forgot");
         setLoading(false);
       }
       else{
+        
         sessionStorage.setItem('tin', tin);
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem("auths", true);
+        sessionStorage.setItem("roles",role);
         navigate('/home')
         setLoading(false);
       }
     }
+    if(role.includes && role.includes('admin')){
+      sessionStorage.setItem('tin',tin);
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem("auths", true);
+        sessionStorage.setItem("roles",role);
+        navigate("/admin");
+
+    }
+  }
     
   },[navigate, tin, token]);
 
