@@ -43,6 +43,8 @@
 }
 .app__content{
     margin-left: 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     background-color: white;
     width: 80%;
     padding: 20px 10px;
