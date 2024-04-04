@@ -78,16 +78,20 @@ const Admin = () => {
     };
      
     const filterByTin=userTin?
-    applications.filter((application)=>application.tinNumber.includes(userTin))
+    applications.filter((app)=>app.tinNumber.toString().includes(userTin))
     :applications;
 
+    const sortApplications=()=>{
+        const sortedApplications=[...applications].sort((a,b)=>new Date(a.requestDate)- new Date(b.requestDate));
+        setApplications(sortedApplications);
+    }
 
 
 
-    const approveRequest=async(tinNumber)=>{
+    const approveRequest=async(tinNumber,process)=>{
         setSending(true);
         try {
-            const response=await axios.post(`http://localhost:8080/applications/approve/${tinNumber}`,{feedback},{
+            const response=await axios.post(`http://localhost:8080/applications/${process}/${tinNumber}`,{feedback},{
                 headers:{
                     Authorization:`Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -95,7 +99,7 @@ const Admin = () => {
 
             })
             if(response.status===200){
-                console.log("application approved");
+                console.log("application status changed");
                 setSending(false);
                 setFeedback('');
 
@@ -114,14 +118,6 @@ const Admin = () => {
         }
 
     }
-
-
-
-
-
-
-
-
 
   return (
     <div className='admin__container'>
@@ -149,7 +145,9 @@ const Admin = () => {
                      onKeyDown={()=>filterByTin}
                     
                     />
-                    <buttton className='search__btn'>Sort by Date</buttton>
+                    <button className='search__btn'
+                    onClick={sortApplications}
+                    >Sort by Date</button>
                 </div>
               <table>
                  <thead>
@@ -165,20 +163,18 @@ const Admin = () => {
                 </thead>
                 <tbody>
                     {
-                        applications.map((req)=>(
+                        filterByTin.map((req)=>(
                             <tr key={req.id}>
                                 <td>{req.id}</td>
                                 <td>{req.tinNumber}</td>
                                 <td>{req.ebmType}</td>
                                 <td>{req.owner}</td>
                                 <td>{req.requestDate}</td>
-                                <td>{req.status}</td>
+                                <td style={{color:req.status==="approved"?"green":req.status==="rejected"?"red":"black"}}
+                                >{req.status}</td>
                                 <td>
                                     <button className='view__btn' onClick={()=>fetchData(req.tinNumber)}>
                                         View
-                                    </button>
-                                    <button className='delete__btn'>
-                                        Delete
                                     </button>
                                 </td>
                             
@@ -202,12 +198,16 @@ const Admin = () => {
             <h3 className='content__headers'>EBM Owner: {selectedRequest.owner}</h3>
             <h3 className='content__headers'>serial Number: {selectedRequest.serialNumber}</h3>
             <h3 className='content__headers'>Request Date: {selectedRequest.requestDate}</h3>
-            <h3 className='content__headers'> Application Status: {selectedRequest.status}</h3>
+            <h3 className='content__headers'
+            style={{color:selectedRequest.status==="approved"?"green"
+                    :selectedRequest.status==="rejected"?"red":"black"}}
+            
+            > Application Status: {selectedRequest.status}</h3>
           
 
             </div>
             <div className='app__filess'>
-            <h2 className='app__heads'> Confirmation letter</h2>
+            <h2 className='app__heads'> RRA Confirmation letter</h2>
             <iframe className='filess' src={selectedRequest.letterPath} title='letter'></iframe>
             <h2 className='app__heads'> RDB Certificate</h2>
             <iframe className='filess' src={selectedRequest.certPath} title='certificate'></iframe>
@@ -231,7 +231,7 @@ const Admin = () => {
            
              <div className="feedback__btn">
                 <button className='approve__btn' 
-                onClick={()=>{approveRequest(selectedRequest.tinNumber)}
+                onClick={(approve)=>{approveRequest(selectedRequest.tinNumber,approve)}
                 } 
                 >
                     {
@@ -239,7 +239,9 @@ const Admin = () => {
                         "Approve"
                     }
                 </button>
-                <button className='decline__btn'>Decline</button>
+                <button className='decline__btn'
+                onClick={(reject)=>approveRequest(selectedRequest.tinNumber,reject)}
+                >Decline</button>
              </div>
              </>
             ):(

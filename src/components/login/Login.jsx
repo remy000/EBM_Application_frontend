@@ -36,13 +36,24 @@ const Login = () => {
       setToken(data.token);
     }
     else{
-      console.log(response.status);
+      if(response.status===403 || response.status===400){
       setError("Invalid Credentials");
       setLoading(false)
+      }
     }
     
   } catch (error) {
-    setError('Something went wrong');
+    if (error.response) {
+      if (error.response.status === 400) {
+        setError("Invalid Credentials");
+      } else if (error.response.status === 403) {
+        setError("Forbidden");
+      }
+    } else if (error.request) {
+      setError("No response received from server");
+    } else {
+      setError("Something went wrong");
+    }
     setLoading(false);
   }
   }

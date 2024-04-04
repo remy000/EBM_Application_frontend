@@ -80,12 +80,14 @@ const ApplicationDetail = () => {
             <h3 className='content__header'>EBM Owner: {application.owner}</h3>
             <h3 className='content__header'>serial Number: {application.serialNumber}</h3>
             <h3 className='content__header'>Request Date: {application.date}</h3>
-            <h3 className='content__header'> Application Status: {application.status}</h3>
+            <h3 className='content__header'> Application Status: <span style={{color:application.status==="approved"?"green"
+                 :application.status==="rejected"?"red":"black"}}
+            >{application.status}</span></h3>
           
 
             </div>
             <div className='app__files'>
-            <h2 className='app__head'> Confirmation letter</h2>
+            <h2 className='app__head'> RRA Confirmation letter</h2>
             <iframe className='files' src={application.letter} title='letter'></iframe>
             <h2 className='app__head'> RDB Certificate</h2>
             <iframe className='files' src={application.certificate} title='certificate'></iframe>

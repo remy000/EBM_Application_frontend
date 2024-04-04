@@ -42,11 +42,11 @@
     text-align: center;
 }
 .app__content{
-    margin-left: 6rem;
+    margin-left: 7rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     background-color: white;
-    width: 80%;
+    width: 75%;
     padding: 20px 10px;
 }
 .content__header{
@@ -58,16 +58,17 @@
 .app__files{
     display: flex;
     flex-direction: column;
-    margin-left: 6rem;
+   
     gap: 10px;
 }
 .files{
     width: 83%;
     height: 700px;
+    margin-left: 6rem;
 }
 .app__head{
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin-top: 1rem;
     font-weight: bold;
     line-height: 30px;

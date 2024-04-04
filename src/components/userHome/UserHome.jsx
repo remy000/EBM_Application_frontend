@@ -72,7 +72,9 @@ const UserHome = () => {
                 application.type || application.status || application.date?(
             <div className='home__app'>
                 <h2 className='app__header'>EBM Type: {application.type}</h2>
-                <h3 className='app__header'>Status: {application.status}</h3>
+                <h3 className='app__header'>Status:<span style={{color:application.status==="approved"?"green"
+                 :application.status==="rejected"?"red":"black"}} className='app__header'>  {application.status}</span>
+                </h3>
                 <h5 className='app__header'>Date: {application.date}</h5>
                 <Link to={`/applicationDetail/${tin}`} className='app__link'>Open Application</Link>
             </div>

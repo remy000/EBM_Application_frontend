@@ -85,6 +85,7 @@ thead {
     background-color: #093e61;
     margin-right: 1.4rem;
     margin-left: 2rem;
+    cursor: pointer;
     
   }
   .modal {
@@ -120,7 +121,7 @@ thead {
 }
 .app__heads{
   color: #093e61;
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-top: 1rem;
   font-weight: bold;
   line-height: 30px;
@@ -145,12 +146,12 @@ thead {
 .app__filess{
   display: flex;
   flex-direction: column;
-  margin-left: 10rem;
   gap: 10px;
 }
 .filess{
   width: 80%;
   height: 700px;
+  margin-left: 9rem;
 }
 .feedback__input{
   margin:1rem 4rem 3rem 4rem;
