@@ -13,6 +13,7 @@ const Admin = () => {
     const [feedback,setFeedback]=useState('');
     const[sending,setSending]=useState(false);
     const [userTin, setUserTin]=useState(null);
+    const [sortByDateAscending, setSortByDateAscending] = useState(true);
     const navigate=useNavigate();
     useEffect(()=>{
         const fetchRequests=async()=>{
@@ -81,10 +82,15 @@ const Admin = () => {
     applications.filter((app)=>app.tinNumber.toString().includes(userTin))
     :applications;
 
-    const sortApplications=()=>{
-        const sortedApplications=[...applications].sort((a,b)=>new Date(a.requestDate)- new Date(b.requestDate));
+    const sortApplications = () => {
+        const sortedApplications = [...applications].sort((a, b) => {
+          const dateA = new Date(a.requestDate);
+          const dateB = new Date(b.requestDate);
+          return sortByDateAscending ? dateA - dateB : dateB - dateA;
+        });
         setApplications(sortedApplications);
-    }
+        setSortByDateAscending(!sortByDateAscending); // Toggle sort order
+      };
 
 
 

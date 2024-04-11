@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './change.css'
+import axios from 'axios';
 
 const ChangePassword = () => {
   const token=sessionStorage.getItem('token');
@@ -12,31 +13,37 @@ const ChangePassword = () => {
   const [loading,setLoading]=useState(false);
   const navigate=useNavigate();
 
+
   const handleChange=async(e)=>{
     e.preventDefault();
     const userId=tin;
     setLoading(true);
     try{
-    const response=await fetch('http://localhost:8080/users/changePassword',{
-      method:'POST',
+    
+    const response=await axios.post('http://localhost:8080/users/changePassword',{
+      userId,
+      oldPassword,
+      newPassword
+    },{
       headers:{
         'Content-Type':'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({userId,oldPassword,newPassword})
 
     });
-    if(response.ok){
+    if(response.status===200){
       setSuccess("password Changed successfully");
       setLoading(false);
       navigate('/');
     }
     else{
       setError('fail to change password! try again later');
+      setLoading(false);
     }
 
     }catch(e){
       setError(e.message);
+      setLoading(false);
     }
 
   }

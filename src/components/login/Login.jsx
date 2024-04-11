@@ -17,6 +17,7 @@ const Login = () => {
     setLoading(true);
     if (tin.trim().length !== 9 || tin.startsWith('0')) {
       setError('Invalid TIN number');
+      setLoading(false);
       return;
   }
   try {
