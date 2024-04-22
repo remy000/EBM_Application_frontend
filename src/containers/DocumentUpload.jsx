@@ -56,7 +56,7 @@ const handleBack = (e) => {
           {files.letter && <p className='document__file'>Selected file: {files.letter.name}</p>}
        
         <br />
-        <label className='form__label'> RDB Certificate</label>
+        <label className='form__label'> Registration Certificate</label>
           <input
           className='form__input'
             type="file"

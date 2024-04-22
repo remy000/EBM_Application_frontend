@@ -3,6 +3,7 @@ import './admin.css'
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { InfinitySpin} from 'react-loader-spinner'
+import {CSVLink}from 'react-csv'
 
 const Admin = () => {
     const token=sessionStorage.getItem("token");
@@ -26,7 +27,12 @@ const Admin = () => {
                 })
                 if(response.status===200){
                     const data=response.data;
-                    setApplications(data);
+                    const sortedApplications = data.sort((a, b) => {
+                        if (a.status === 'pending' && b.status !== 'pending') return -1;
+                        if (a.status !== 'pending' && b.status === 'pending') return 1;
+                        return 0;
+                    });
+                    setApplications(sortedApplications);
                     setLoading(false);
                 }
                 else{
@@ -97,7 +103,7 @@ const Admin = () => {
     const approveRequest=async(tinNumber,process)=>{
         setSending(true);
         try {
-            const response=await axios.post(`http://localhost:8080/applications/${process}/${tinNumber}`,{feedback},{
+            const response=await axios.post(`http://localhost:8080/applications/approve/${tinNumber}`,{feedback},{
                 headers:{
                     Authorization:`Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -124,6 +130,14 @@ const Admin = () => {
         }
 
     }
+    const headers = [
+        { label: '#', key: 'id' },
+        { label: 'TIN Number', key: 'tinNumber' },
+        { label: 'EBM Type', key: 'ebmType' },
+        { label: 'Owner', key: 'owner' },
+        { label: 'Request Date', key: 'requestDate' },
+        { label: 'Status', key: 'status' },
+      ];
 
   return (
     <div className='admin__container'>
@@ -151,9 +165,13 @@ const Admin = () => {
                      onKeyDown={()=>filterByTin}
                     
                     />
+                    <CSVLink data={filterByTin} headers={headers} className='search__btns'>
+                        Download CSV
+                    </CSVLink>
                     <button className='search__btn'
                     onClick={sortApplications}
                     >Sort by Date</button>
+                    
                 </div>
               <table>
                  <thead>
@@ -215,7 +233,7 @@ const Admin = () => {
             <div className='app__filess'>
             <h2 className='app__heads'> RRA Confirmation letter</h2>
             <iframe className='filess' src={selectedRequest.letterPath} title='letter'></iframe>
-            <h2 className='app__heads'> RDB Certificate</h2>
+            <h2 className='app__heads'> Registration Certificate</h2>
             <iframe className='filess' src={selectedRequest.certPath} title='certificate'></iframe>
             <h2 className='app__heads'> VAT Certificate</h2>
             <iframe className='filess' src={selectedRequest.vatPath} title='catCertificate'></iframe>

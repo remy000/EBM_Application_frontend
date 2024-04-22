@@ -102,8 +102,8 @@ const Login = () => {
                error&& <p className='signup__error'>{error}</p>
             }
             <form className='login__form' onSubmit={handleLogin}>
-            <label className='signup__label'>TIN Number</label>
-            <input type='number' placeholder='Enter TIN Number' className='signup__input'
+            <label className='signup__label'>TIN  or Username</label>
+            <input type='number' placeholder='Enter tin or username' className='signup__input'
             value={tin}
             onChange={(e)=>setTin(e.target.value)}
             
@@ -114,7 +114,7 @@ const Login = () => {
             onChange={(e)=>setPassword(e.target.value)}
              />
 
-            <Link to="/forgot" className='forgot__link'>Forgot password?</Link>
+            <Link to="#" className='forgot__link'>Forgot password?</Link>
             <button className='login__btn' disabled={loading}>{loading? 'loading...' : 'Login'}</button>
             <Link to='/signup' className='login__link'> Not a Member? Signup</Link>
             

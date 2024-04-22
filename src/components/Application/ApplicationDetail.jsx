@@ -89,7 +89,7 @@ const ApplicationDetail = () => {
             <div className='app__files'>
             <h2 className='app__head'> RRA Confirmation letter</h2>
             <iframe className='files' src={application.letter} title='letter'></iframe>
-            <h2 className='app__head'> RDB Certificate</h2>
+            <h2 className='app__head'> Registration Certificate</h2>
             <iframe className='files' src={application.certificate} title='certificate'></iframe>
             <h2 className='app__head'> VAT Certificate</h2>
             <iframe className='files' src={application.vatCertificate} title='catCertificate'></iframe>
